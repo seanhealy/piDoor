@@ -45,7 +45,7 @@ def toggle(door_id):
         return toggle_door(0)
 
     if door_id == config["doors"]["1"]["id"]:
-        return toggle_door(0)
+        return toggle_door(1)
 
     return "Unknown Door: {0}".format(door_id)
 
