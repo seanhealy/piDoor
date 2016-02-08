@@ -1,16 +1,37 @@
 from flask import Flask
 from time import sleep
+
 import pifacedigitalio
+import json
 
 DOOR_PULSE = 0.25  # seconds
 
-def toggle_door():
-    pifacedigital.leds[0].turn_on()
-    pifacedigital.relays[0].turn_on()
+JSON = """
+    {
+        "door_pulse": 0.25,
+        "doors": {
+            "0": {
+                "id": "foo"
+            },
+            "1": {
+                "id": "bar"
+            }
+        }
+    }
+"""
+
+config = json.loads(JSON)
+
+DOOR_PULSE = config["door_pulse"]
+
+def toggle_door(id):
+    pifacedigital.leds[id].turn_on()
+    pifacedigital.relays[id].turn_on()
     sleep(DOOR_PULSE)
-    pifacedigital.leds[0].turn_off()
-    pifacedigital.relays[0].turn_off()
-    return
+    pifacedigital.leds[id].turn_off()
+    pifacedigital.relays[id].turn_off()
+
+    return "Toggled Door: {0}".format(id)
 
 app = Flask(__name__)
 
@@ -18,10 +39,15 @@ app = Flask(__name__)
 def hello():
     return "Hello World!"
 
-@app.route("/toggle")
+@app.route("/door/<door_id>/toggle")
 def toggle():
-    toggle_door()
-    return "true"
+    if door_id == config["doors"]["0"]["id"]:
+        return toggle_door(0)
+
+    if door_id == config["doors"]["0"]["id"]:
+        return toggle_door(0)
+
+    return "Unknown Door: {0}".format(door_id)
 
 if __name__ == "__main__":
     pifacedigital = pifacedigitalio.PiFaceDigital()
