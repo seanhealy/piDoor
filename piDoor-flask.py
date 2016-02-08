@@ -12,9 +12,6 @@ JSON = """
         "doors": {
             "0": {
                 "id": "foo"
-            },
-            "1": {
-                "id": "bar"
             }
         }
     }
@@ -41,10 +38,10 @@ def hello():
 
 @app.route("/door/<door_id>/toggle")
 def toggle(door_id):
-    if door_id == config["doors"]["0"]["id"]:
+    if "0" in config["doors"] and  door_id == config["doors"]["0"]["id"]:
         return toggle_door(0)
 
-    if door_id == config["doors"]["1"]["id"]:
+    if "1" in config["doors"] and door_id == config["doors"]["1"]["id"]:
         return toggle_door(1)
 
     return "Unknown Door: {0}".format(door_id)
