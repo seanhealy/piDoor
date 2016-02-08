@@ -6,18 +6,12 @@ import json
 
 DOOR_PULSE = 0.25  # seconds
 
-JSON = """
-    {
-        "door_pulse": 0.25,
-        "doors": {
-            "0": {
-                "id": "foo"
-            }
-        }
-    }
-"""
-
-config = json.loads(JSON)
+try:
+    config = json.loads(open("config.json"))
+    break
+except:
+    print "`config.json` is invalid or doesn't exist."
+    sys.exit(1)
 
 DOOR_PULSE = config["door_pulse"]
 
