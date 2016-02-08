@@ -6,6 +6,7 @@ import json
 import sys
 
 config = json.loads(open("config.json").read())
+pifacedigital = pifacedigitalio.PiFaceDigital()
 
 def toggle_door(id):
     pifacedigital.leds[id].turn_on()
