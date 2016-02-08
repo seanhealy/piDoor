@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from time import sleep
 
 import pifacedigitalio
