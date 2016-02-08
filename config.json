@@ -1,5 +1,5 @@
 {
-  "door_pulse": 0.25,
+  "door_pulse": 0.5,
   "doors": {
     "0": {
       "key": "door_0_secret"

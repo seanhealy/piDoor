@@ -27,15 +27,10 @@ def toggle(door_id):
     json = request.get_json()
     key = json["key"]
 
-    # We only have two relays on a PiFace
-
     if door_id in config["doors"] and config["doors"][door_id]["key"] == key:
         return toggle_door(int(door_id))
 
     return "Unknown Door: {0}".format(door_id)
 
 if __name__ == "__main__":
-    pifacedigital = pifacedigitalio.PiFaceDigital()
-    # pifacedigital.leds[7].turn_on()
-
     app.run(host='0.0.0.0', port=2021, debug=True)
