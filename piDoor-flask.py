@@ -36,4 +36,4 @@ if __name__ == "__main__":
     pifacedigital = pifacedigitalio.PiFaceDigital()
     # pifacedigital.leds[7].turn_on()
 
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    app.run(host='0.0.0.0', port=2021, debug=True)
