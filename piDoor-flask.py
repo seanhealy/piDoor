@@ -40,7 +40,7 @@ def hello():
     return "Hello World!"
 
 @app.route("/door/<door_id>/toggle")
-def toggle():
+def toggle(door_id):
     if door_id == config["doors"]["0"]["id"]:
         return toggle_door(0)
 
