@@ -8,7 +8,7 @@ import sys
 DOOR_PULSE = 0.25  # seconds
 
 try:
-    config = json.loads(open("config.json"))
+    config = json.loads(open("config.json").read())
 except:
     print "`config.json` is invalid or doesn't exist."
     sys.exit(1)
