@@ -3,6 +3,7 @@ from time import sleep
 
 import pifacedigitalio
 import json
+import sys
 
 DOOR_PULSE = 0.25  # seconds
 
