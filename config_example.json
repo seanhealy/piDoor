@@ -3,6 +3,9 @@
   "doors": {
     "0": {
       "key": "door_0_secret"
+    },
+    "1": {
+      "key": "door_1_secret"
     }
   }
 }

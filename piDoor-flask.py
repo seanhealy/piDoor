@@ -22,13 +22,14 @@ app = Flask(__name__)
 def hello():
     return "Hello World!"
 
-@app.route("/door/<door_id>/toggle")
+@app.route("/door/<door_id>/toggle", methods=["PUT"])
 def toggle(door_id):
-    if "0" in config["doors"] and  door_id == config["doors"]["0"]["id"]:
-        return toggle_door(0)
+    key = request.json["key"]
 
-    if "1" in config["doors"] and door_id == config["doors"]["1"]["id"]:
-        return toggle_door(1)
+    # We only have two relays on a PiFace
+
+    if door_id in config["doors"] and config["doors"][door_id]["key"] == key:
+        return toggle_door(int(door_id))
 
     return "Unknown Door: {0}".format(door_id)
 
