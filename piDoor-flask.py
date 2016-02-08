@@ -24,7 +24,8 @@ def hello():
 
 @app.route("/door/<door_id>/toggle", methods=["PUT"])
 def toggle(door_id):
-    key = request.json["key"]
+    json = request.get_json()
+    key = json["key"]
 
     # We only have two relays on a PiFace
 
