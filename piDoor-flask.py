@@ -8,7 +8,6 @@ DOOR_PULSE = 0.25  # seconds
 
 try:
     config = json.loads(open("config.json"))
-    break
 except:
     print "`config.json` is invalid or doesn't exist."
     sys.exit(1)
@@ -42,6 +41,6 @@ def toggle(door_id):
 
 if __name__ == "__main__":
     pifacedigital = pifacedigitalio.PiFaceDigital()
-    pifacedigital.leds[7].turn_on()
+    # pifacedigital.leds[7].turn_on()
 
     app.run(host='0.0.0.0', port=8000, debug=True)
