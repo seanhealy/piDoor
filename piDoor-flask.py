@@ -5,20 +5,12 @@ import pifacedigitalio
 import json
 import sys
 
-DOOR_PULSE = 0.25  # seconds
-
-try:
-    config = json.loads(open("config.json").read())
-except:
-    print "`config.json` is invalid or doesn't exist."
-    sys.exit(1)
-
-DOOR_PULSE = config["door_pulse"]
+config = json.loads(open("config.json").read())
 
 def toggle_door(id):
     pifacedigital.leds[id].turn_on()
     pifacedigital.relays[id].turn_on()
-    sleep(DOOR_PULSE)
+    sleep(config["door_pulse"])
     pifacedigital.leds[id].turn_off()
     pifacedigital.relays[id].turn_off()
 
