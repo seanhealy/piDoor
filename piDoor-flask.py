@@ -1,4 +1,5 @@
 from flask import Flask, request
+from twilio.rest import TwilioRestClient
 from time import sleep
 
 import pifacedigitalio
@@ -7,6 +8,16 @@ import sys
 
 config = json.loads(open("config.json").read())
 pifacedigital = pifacedigitalio.PiFaceDigital()
+
+account_sid = config["twilio"]["account_sid"]
+auth_token  = config["twilio"]["auth_token"]
+client = TwilioRestClient(account_sid, auth_token)
+
+def send_twilio_message(message):
+    message = client.messages.create(body=message,
+        to="+17808854376",    # Replace with your phone number
+        from_="+15874007326") # Replace with your Twilio number
+    print message.sid
 
 def toggle_door(id):
     pifacedigital.leds[id].turn_on()
@@ -29,9 +40,13 @@ def toggle(door_id):
     key = json["key"]
 
     if door_id in config["doors"] and config["doors"][door_id]["key"] == key:
-        return toggle_door(int(door_id))
+        status = toggle_door(int(door_id))
+    else:
+        status = "Unknown Door: {0}".format(door_id)
 
-    return "Unknown Door: {0}".format(door_id)
+    send_twilio_message(status)
+    return status
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=2021, debug=True)
+    context = ('~/letsencrypt/cert.crt', '~/letsencrypt/key.key')
+    app.run(host='0.0.0.0', port=2021, debug=True, ssl_context=context)

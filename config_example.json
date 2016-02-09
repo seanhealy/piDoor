@@ -7,5 +7,9 @@
     "1": {
       "key": "door_1_secret"
     }
+  },
+  "twilio": {
+    "account_sid": "account_sid",
+    "auth_token": "auth_token"
   }
 }
