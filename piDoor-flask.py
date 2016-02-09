@@ -4,8 +4,8 @@ from time import sleep
 
 from OpenSSL import SSL
 context = SSL.Context(SSL.SSLv23_METHOD)
-context.use_privatekey_file('~/ssl/privkey.pem')
-context.use_certificate_file('~/ssl/fullchain.pem')
+context.use_privatekey_file('privkey.pem')
+context.use_certificate_file('fullchain.pem')
 
 import pifacedigitalio
 import json
