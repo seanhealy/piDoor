@@ -49,4 +49,4 @@ def toggle(door_id):
 
 if __name__ == "__main__":
     context = ('privkey.pem', 'fullchain.pem')
-    app.run(host='0.0.0.0', port=2021, debug=True, ssl_context=context)
+    app.run(host='0.0.0.0', port=2021, debug=True, ssl_context="adhoc")
