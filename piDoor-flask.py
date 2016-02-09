@@ -2,6 +2,11 @@ from flask import Flask, request
 from twilio.rest import TwilioRestClient
 from time import sleep
 
+from OpenSSL import SSL
+context = SSL.Context(SSL.SSLv23_METHOD)
+context.use_privatekey_file('~/ssl/privkey.pem')
+context.use_certificate_file('~/ssl/fullchain.pem')
+
 import pifacedigitalio
 import json
 import sys
@@ -48,5 +53,4 @@ def toggle(door_id):
     return status
 
 if __name__ == "__main__":
-    context = ('~/ssl/fullchain.pem', '~/ssl/privkey.pem')
     app.run(host='0.0.0.0', port=2021, debug=True, ssl_context=context)
