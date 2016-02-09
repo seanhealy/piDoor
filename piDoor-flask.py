@@ -48,5 +48,5 @@ def toggle(door_id):
     return status
 
 if __name__ == "__main__":
-    context = ('~/letsencrypt/cert.crt', '~/letsencrypt/key.key')
+    context = ('~/ssl/fullchain.pem', '~/ssl/privkey.pem')
     app.run(host='0.0.0.0', port=2021, debug=True, ssl_context=context)
