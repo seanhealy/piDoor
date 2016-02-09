@@ -5,6 +5,7 @@ from time import sleep
 import pifacedigitalio
 import json
 import sys
+import time
 
 config = json.loads(open("config.json").read())
 pifacedigital = pifacedigitalio.PiFaceDigital()
@@ -44,7 +45,8 @@ def toggle(door_id):
     else:
         status = "Unknown Door: {0}".format(door_id)
 
-    send_twilio_message(status)
+    datetime = time.strftime("%Y-%m-%d %H:%M:%S")
+    send_twilio_message("{0} at {1}".format(status, datetime))
     return status
 
 if __name__ == "__main__":
